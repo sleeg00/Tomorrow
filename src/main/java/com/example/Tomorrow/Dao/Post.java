@@ -1,0 +1,37 @@
+package com.example.Tomorrow.Dao;
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "post")
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Post {
+
+    @Id
+    @Column(name = "post_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long post_id;
+
+    @Column(name = "content")
+    private String content;
+
+    @Column(name = "picture")
+    private String post_picture;
+
+    @Column(name = "likes")
+    private String likes;
+
+    @Column(name = "comment")
+    private String comment;
+
+    @ManyToOne
+    @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
+    private Member member;
+
+
+}

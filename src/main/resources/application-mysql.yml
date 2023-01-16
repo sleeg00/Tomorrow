@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: 21474836
+    url: jdbc:mysql://127.0.0.1:3306/codebasedb?allowPublicKeyRetrieval=true&useSSL=false
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: true

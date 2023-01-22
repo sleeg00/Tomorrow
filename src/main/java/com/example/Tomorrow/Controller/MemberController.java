@@ -12,8 +12,10 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/member/join")
-    public HttpStatus join(@RequestParam("member_id") Long member_id) {
-        return memberService.join(member_id);
+    public String join(@RequestParam("member_id") Long member_id,
+                       @RequestParam("id") String id,
+                       @RequestParam("pw") String pw) {
+         return memberService.join(member_id, id,pw);
     }
 
     @GetMapping("member/login")

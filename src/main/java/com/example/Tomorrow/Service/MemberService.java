@@ -1,28 +1,56 @@
 package com.example.Tomorrow.Service;
 
 import com.example.Tomorrow.Dao.Member;
+import com.example.Tomorrow.Dao.Post;
+
+import com.example.Tomorrow.Mapper.MemberMapper;
 import com.example.Tomorrow.Repository.MemberRepository;
+import com.example.Tomorrow.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+
+import javax.transaction.Transactional;
 import java.util.Optional;
 
+
+
 @Service
+@Transactional
 public class MemberService {
 
     @Autowired
-    MemberRepository memberRepository;
+   MemberRepository memberRepository;
+   MemberMapper memberMapper;
+   @Autowired
+    PostRepository postRepository;
 
-    public HttpStatus join(Long member_id) {
+
+
+
+
+    public String join(Long member_id, String id, String pw) {
+
         try {
             Member member = new Member();
-            member.setMember_id(member_id);
-            memberRepository.save(member);
+            member.setId("@@");
+            member.setPw("@@");
+
+
+            Post post = new Post();
+            post.setComment("Comment");
+            post.setPost_picture("PI");
+            post.setContent("content");
+            post.setLikes("LIkes");
+            post.setMember(member);
+
+            postRepository.save(post);
         }catch(Exception e){
-            return HttpStatus.BAD_REQUEST;
+            return e.getMessage();
         }
-        return HttpStatus.OK;
+
+        return "1";
     }
 
     public HttpStatus login(Long member_id) {

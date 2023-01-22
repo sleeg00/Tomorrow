@@ -1,21 +1,30 @@
 package com.example.Tomorrow.Dao;
 
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "post")
 @Getter
-@Builder
-@AllArgsConstructor
+@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+
 public class Post {
 
     @Id
     @Column(name = "post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long post_id;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "content")
     private String content;
@@ -29,8 +38,9 @@ public class Post {
     @Column(name = "comment")
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
+    @NotFound(action = NotFoundAction.IGNORE)
     private Member member;
 
 

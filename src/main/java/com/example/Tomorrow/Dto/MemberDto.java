@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 public class MemberDto {
 
-    private Long post_id;
-    private List<Post> List_post = new ArrayList<>();
+    private Long member_id;
+    private List<Post> posts;
+    private String id;
+    private String pw;
+
 }

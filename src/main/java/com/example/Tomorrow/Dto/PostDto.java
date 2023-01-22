@@ -1,6 +1,7 @@
 package com.example.Tomorrow.Dto;
 
 
+import com.example.Tomorrow.Dao.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class PostDto {
     private String content;
     private String likes;
     private String comment;
-    private String picture;
-
+    private String post_picture;
+    private Member member;
+    private String title;
 }

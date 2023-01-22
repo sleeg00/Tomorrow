@@ -23,7 +23,7 @@ public class PostService {
         member.setMember_id(member_id);
 
         Post post = postMapper.toEntity(postDto);
-        post.getMember().getList_post().add(post);
+        post.getMember().getPosts().add(post);
 
         postRepository.save(post);
         memberRepository.save(member);

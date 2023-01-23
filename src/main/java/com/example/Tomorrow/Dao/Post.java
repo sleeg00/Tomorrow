@@ -32,15 +32,14 @@ public class Post {
     @Column(name = "picture")
     private String post_picture;
 
-    @Column(name = "likes")
+    @Column(name = "likes", nullable = true)
     private String likes;
 
-    @Column(name = "comment")
+    @Column(name = "comment", nullable = true)
     private String comment;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
-    @NotFound(action = NotFoundAction.IGNORE)
     private Member member;
 
 

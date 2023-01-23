@@ -34,17 +34,23 @@ public class MemberService {
 
         try {
             Member member = new Member();
-            member.setId("@@");
-            member.setPw("@@");
+            member.setMember_id(member_id);
+            member.setId(id);
+            member.setPw(pw);
 
 
+            System.out.println("start post");
             Post post = new Post();
             post.setComment("Comment");
             post.setPost_picture("PI");
             post.setContent("content");
+            post.setTitle("title");
             post.setLikes("LIkes");
             post.setMember(member);
 
+
+
+            memberRepository.save(member);
             postRepository.save(post);
         }catch(Exception e){
             return e.getMessage();

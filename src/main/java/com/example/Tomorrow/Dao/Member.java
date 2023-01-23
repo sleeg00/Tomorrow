@@ -2,14 +2,10 @@ package com.example.Tomorrow.Dao;
 
 
 import lombok.*;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Entity
@@ -24,7 +20,6 @@ public class Member {
 
     @Id
     @Column(name = "member_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long member_id;
 
     @Column(name = "id")
@@ -35,7 +30,7 @@ public class Member {
 
 
     @OneToMany(mappedBy= "member") //cascadeALl ->  Entity 따라감 모든 것을
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts = new ArrayList<Post>();
 
 
 
@@ -49,4 +44,11 @@ public class Member {
         this.posts.add(post);
     }
 
+    public int checkPost(){
+        return this.posts.size();
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
 }

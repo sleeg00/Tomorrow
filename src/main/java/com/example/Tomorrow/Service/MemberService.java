@@ -60,9 +60,10 @@ public class MemberService {
             post.setLikes("LIkes");
             post.setMember(member);
 
-            member.setRoles(Collections.singletonList("USER"));
+            member.setRoles(Collections.singletonList("USER")); //권한 설정
             HashMap<String, String> m = new HashMap<>();
-            m.put("Id", member.getId());
+            m.put("memberId", String.valueOf(member_id));
+            //Id, Pw로 Token 생성?...
 
             String accessToken, refreshToken;
             accessToken= jwtProvider.generateToken(m);
@@ -74,6 +75,7 @@ public class MemberService {
             memberRepository.save(member);
             postRepository.save(post);
             res.addCookie(refreshCookie);   //응답에 쿠키 넘겨주기!
+            res.setHeader("accessToken", accessToken);
 
             BasicResponse basicResponse = new BasicResponse();
             if(accessToken!=null && refreshToken!=null) {
@@ -92,7 +94,7 @@ public class MemberService {
     }
 
     public HttpStatus login(Long member_id) {
-
+        System.out.println("성공!!!");
         try {
             Optional<Member> check = memberRepository.findById(member_id);
         }catch(Exception e) {

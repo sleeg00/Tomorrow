@@ -15,7 +15,13 @@ public class CookieUtil {   //토큰을 Cookie로 저장
         Cookie token = new Cookie(cookieName,value);
         token.setHttpOnly(true);
         token.setMaxAge((int) JwtProvider.TOKEN_VALIDATION_SECOND);
+
+        /*  CSRF 방어 sameSite 설정 도메인이 아직 없어서 적용 불가능
         token.setPath("/");
+        token.setSecure(true);
+        token.setDomain("None");
+
+         */
         return token;
     }
 

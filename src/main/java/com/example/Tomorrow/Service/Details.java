@@ -4,15 +4,13 @@ import com.example.Tomorrow.Dao.Member;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
-public class Details extends User {
+public class Details extends User { //Authentication 객체 생성 super()을 이용하여!
 
     public Details(Member member) {
-        super(member.getMember_id(), member.getPw(),
+        super(member.getId(), member.getPw(),
                 AuthorityUtils.createAuthorityList(String.valueOf(member.getRoles())));
     }
 
-    public String getMemberId() {
-        return this.getPassword();
-    }
+
 
 }

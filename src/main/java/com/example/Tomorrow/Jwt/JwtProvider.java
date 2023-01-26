@@ -1,6 +1,14 @@
 package com.example.Tomorrow.Jwt;
 
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.Tomorrow.Service.Details;
+import com.example.Tomorrow.Service.MyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +28,7 @@ public class JwtProvider implements AuthenticationProvider {
 
     private final MyUserDetailsService userDetailsService;
 
-    public static final long TOKEN_VALIDATION_SECOND = 1000L * 60 * 60 * 48;
+    public static final long TOKEN_VALIDATION_SECOND = 120000L;
     public static final long REFRESH_TOKEN_VALIDATION_TIME = 1000L * 60 * 60 * 48;
 
 
@@ -41,7 +49,6 @@ public class JwtProvider implements AuthenticationProvider {
     public String getMemberIdFromToken(String token) {
         DecodedJWT verifiedToken = validateToken(token);
         return verifiedToken.getClaim("memberId").asString();
-
     }
 
     private JWTVerifier getTokenValidator() {
@@ -88,12 +95,12 @@ public class JwtProvider implements AuthenticationProvider {
     //UsernamePassword찾는 곳
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        MyDetails userDetails = (MyDetails) userDetailsService.loadUserByUsername
+
+        Details userDetails = (Details) userDetailsService.loadUserByUsername
                 ((String) authentication.getPrincipal());
 
-
         return new UsernamePasswordAuthenticationToken(
-                userDetails.getMemberId(),
+                userDetails.getUsername(),
                 userDetails.getPassword(),
                 userDetails.getAuthorities()); //권한
     }

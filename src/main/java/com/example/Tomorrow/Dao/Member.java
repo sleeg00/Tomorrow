@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @Setter
 @Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
-
 public class Member implements UserDetails {
 
     @Id
@@ -37,6 +37,7 @@ public class Member implements UserDetails {
     @OneToMany(mappedBy= "member") //cascadeALl ->  Entity 따라감 모든 것을
     private List<Post> posts = new ArrayList<Post>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 

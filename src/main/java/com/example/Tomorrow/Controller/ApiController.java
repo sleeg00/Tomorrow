@@ -1,3 +1,4 @@
+/*
 package com.example.Tomorrow.Controller;
 
 import com.example.Tomorrow.Dto.ServerInfo;
@@ -18,3 +19,5 @@ public class ApiController {
         return dataService.getServerInfo();
     }
 }
+
+ */

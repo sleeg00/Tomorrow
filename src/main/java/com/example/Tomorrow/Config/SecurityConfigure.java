@@ -6,6 +6,7 @@ import com.example.Tomorrow.Service.CookieUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,11 @@ public class SecurityConfigure {
     }
 
     @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {  //해당 URL은 필터 거치지 않겠다
+        return (web -> web.ignoring().antMatchers("/api/member/join"));
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http,
                                            JwtProvider jwtProvider,
                                            CookieUtil cookieUtil) throws Exception {
@@ -34,9 +40,8 @@ public class SecurityConfigure {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/member/**").permitAll()
                 .antMatchers("/test").permitAll()
-                .antMatchers("/api/member/login").hasAuthority("[ROLE_USER]")
+                .antMatchers("/api/member/login").hasAuthority("[USER]")
 
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter(jwtProvider, cookieUtil),

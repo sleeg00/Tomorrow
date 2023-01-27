@@ -8,7 +8,6 @@
 ##### Dart version: 2.18.6
 ##### Text Editor: VScode
 ## 
----
 ##
 ##### Spring Boot Version: 2.7.7
 ##### Editor: Intellij: IDEA

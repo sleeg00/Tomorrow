@@ -1,9 +1,47 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
-import 'join.dart';
+import 'package:http/http.dart' as http;
 
-class Login extends StatelessWidget {
+Future<Member> loginMember(String id, String pw) async {
+  final response = await http.post(
+    Uri.parse('http://localhost:8081/api/member/login'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'id': id,
+      'pw': pw,
+    }),
+  );
+  return Member.fromJson(jsonDecode(response.body));
+}
+
+class Member {
+  final String id;
+  final String pw;
+
+  const Member({required this.id, required this.pw});
+
+  factory Member.fromJson(Map<String, dynamic> json) {
+    return Member(
+      id: json['id'],
+      pw: json['pw'],
+    );
+  }
+}
+
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController tecId = TextEditingController();
+  TextEditingController tecPw = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +59,13 @@ class Login extends StatelessWidget {
               height: 50,
               width: 200,
             ),
-            const TextField(
-              style: TextStyle(
+            TextField(
+              controller: tecId,
+              style: const TextStyle(
                 fontSize: 30,
                 color: Colors.white,
               ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none, //테두리 없애기 & 배경색 입히기
 
                 focusedBorder: UnderlineInputBorder(
@@ -34,7 +73,7 @@ class Login extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.white),
                 ),
 
-                hintText: '등록하고자하는 Id를 입력하세요!',
+                hintText: '로그인하고자하는 Id를 입력하세요!',
                 hintStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -47,20 +86,21 @@ class Login extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            const TextField(
-              style: TextStyle(
+            TextField(
+              controller: tecPw,
+              style: const TextStyle(
                 fontSize: 40,
                 color: Colors.white,
               ),
 
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none, //테두리 없애기 & 배경색 입히기
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white),
                 ),
 
                 //테두리 없애기 & 배경색 입히기
-                hintText: '등록하고자하는 Pw를 입력하세요!',
+                hintText: '로그인하고자하는 Pw를 입력하세요!',
                 hintStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -85,15 +125,12 @@ class Login extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Join(),
-                        ),
-                      );
+                      setState(() {
+                        loginMember(tecId.text, tecPw.text);
+                      });
                     },
                     child: const Text(
-                      '회원가입',
+                      '로그인',
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,

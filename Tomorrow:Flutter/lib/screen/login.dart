@@ -1,21 +1,42 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:http/http.dart' as http;
 
-Future<Member> loginMember(String id, String pw) async {
+import 'join.dart';
+
+Future<Map<String, String>> searchToken() async {
+  const storage = FlutterSecureStorage();
+  Map<String, String> allValues = await storage.readAll();
+  return allValues;
+}
+
+Future<void> loginMember(
+    String id, String pw, String accessToken, String refreshToken) async {
+  print('accessToken =');
+  print(accessToken);
   final response = await http.post(
     Uri.parse('http://localhost:8081/api/member/login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
     },
     body: jsonEncode(<String, String>{
       'id': id,
       'pw': pw,
     }),
   );
-  return Member.fromJson(jsonDecode(response.body));
+  const storage = FlutterSecureStorage();
+  Map<String, String> m = response.headers;
+  if (m['accesstoken'] != null) {
+    await storage.delete(key: 'accessToken');
+    await storage.write(key: 'accessToken', value: m['accesstoken']);
+    print('accessToken:!!!!');
+    print(m['accesstoken']);
+  }
 }
 
 class Member {
@@ -125,12 +146,35 @@ class _LoginState extends State<Login> {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      setState(() {
-                        loginMember(tecId.text, tecPw.text);
-                      });
+                      searchToken().then((value) => setState(() {
+                            loginMember(tecId.text, tecPw.text,
+                                value['accessToken']!, value['refreshToken']!);
+                          }));
                     },
                     child: const Text(
                       '로그인',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 232, 216, 216)),
+                    ),
+                  ),
+                ),
+                FittedBox(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Join(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      '회원가입',
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,

@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-Future<Member> createMember(String id, String pw) async {
-  print(id);
-  print(pw);
+Future<void> createMember(String id, String pw) async {
   final response = await http.post(
     Uri.parse('http://localhost:8081/api/member/join'),
     headers: <String, String>{
@@ -16,8 +15,10 @@ Future<Member> createMember(String id, String pw) async {
       'pw': pw,
     }),
   );
-
-  return Member.fromJson(jsonDecode(response.body));
+  const storage = FlutterSecureStorage();
+  Map<String, String> m = response.headers;
+  await storage.write(key: 'accessToken', value: m['accesstoken']);
+  await storage.write(key: 'refreshToken', value: m['refreshtoken']);
 }
 
 class Member {
@@ -147,21 +148,4 @@ class _JoinState extends State<Join> {
       ),
     );
   }
-
-/*
-  FutureBuilder<Member> buildFutureBuilder() {
-    return FutureBuilder<Member>(
-      future: _futureMember,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data!.id);
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-
-        return const CircularProgressIndicator();
-      },
-    );
-  }
-  */
 }

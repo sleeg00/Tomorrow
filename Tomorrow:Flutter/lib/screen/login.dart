@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:tomorrow/screen/start.dart';
 
 import 'join.dart';
 
-Future<Map<String, String>> searchToken() async {
+Future<Map<String, String>> getToken() async {
   const storage = FlutterSecureStorage();
   Map<String, String> allValues = await storage.readAll();
   return allValues;
 }
 
-Future<void> loginMember(
+Future<int> loginMember(
     String id, String pw, String accessToken, String refreshToken) async {
-  print('accessToken =');
-  print(accessToken);
   final response = await http.post(
     Uri.parse('http://localhost:8081/api/member/login'),
     headers: <String, String>{
@@ -29,13 +28,16 @@ Future<void> loginMember(
       'pw': pw,
     }),
   );
-  const storage = FlutterSecureStorage();
-  Map<String, String> m = response.headers;
-  if (m['accesstoken'] != null) {
-    await storage.delete(key: 'accessToken');
-    await storage.write(key: 'accessToken', value: m['accesstoken']);
-    print('accessToken:!!!!');
-    print(m['accesstoken']);
+  if (response.statusCode == 200) {
+    const storage = FlutterSecureStorage();
+    Map<String, String> m = response.headers;
+    if (m['accesstoken'] != null) {
+      await storage.delete(key: 'accessToken');
+      await storage.write(key: 'accessToken', value: m['accesstoken']);
+    }
+    return response.statusCode;
+  } else {
+    return response.statusCode;
   }
 }
 
@@ -63,7 +65,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController tecId = TextEditingController();
   TextEditingController tecPw = TextEditingController();
-
+  Future<int>? goStart;
+  Future<Map<String, String>>? m;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -71,7 +74,7 @@ class _LoginState extends State<Login> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage('assets/write1.png'), // 배경 이미지
+            image: AssetImage('assets/join.png'), // 배경 이미지
           ),
         ),
         child: Column(
@@ -146,10 +149,24 @@ class _LoginState extends State<Login> {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      searchToken().then((value) => setState(() {
-                            loginMember(tecId.text, tecPw.text,
-                                value['accessToken']!, value['refreshToken']!);
-                          }));
+                      getToken().then((value) {
+                        loginMember(tecId.text, tecPw.text,
+                                value['accessToken']!, value['refreshToken']!)
+                            .then((value) {
+                          if (value == 200) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Start(),
+                              ),
+                            );
+                          }
+                        }).catchError((error) {
+                          print('loginMember error: $error');
+                        });
+                      }).catchError((error) {
+                        print('getToken error: $error');
+                      });
                     },
                     child: const Text(
                       '로그인',

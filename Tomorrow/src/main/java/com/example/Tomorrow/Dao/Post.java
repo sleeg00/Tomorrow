@@ -30,10 +30,10 @@ public class Post {
     private String content;
 
     @Column(name = "picture")
-    private String post_picture;
+    private Long post_picture;
 
     @Column(name = "likes", nullable = true)
-    private String likes;
+    private Long likes;
 
     @Column(name = "comment", nullable = true)
     private String comment;

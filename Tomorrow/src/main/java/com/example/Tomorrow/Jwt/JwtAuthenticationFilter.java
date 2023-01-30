@@ -49,12 +49,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if(accessToken==null || jwtProvider.isTokenExpired(accessToken)) {  //유효기간 만료 또는 토큰 없을시
 
-            Cookie RefreshTokenCookie = cookieUtil.getCookie(req, "RefreshToken");
-            refreshToken = RefreshTokenCookie.getValue(); //RefreshToken 쿠키에서 가져오기
+            refreshToken = req.getHeader("refreshToken"); //RefreshToken 쿠키에서 가져오기
 
-            if(refreshToken!=null || !jwtProvider.isTokenExpired(refreshToken)) {
+            if(refreshToken!=null || !jwtProvider.RefreshisTokenExpired(refreshToken)) {
 
-                String memberId = jwtProvider.getMemberIdFromToken(refreshToken);
+                String memberId = jwtProvider.RefreshgetMemberIdFromToken(refreshToken);
                 // RefreshToken에 저장된 Token을 Decode해서 Id값을 가져온다
                 try {
                     authenticate = jwtProvider
@@ -71,35 +70,39 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     m.put("memberId", memberId);    //RefreshToken에 저장된 Id를 가져온다
 
                     accessToken = jwtProvider.generateToken(m);   //accessToken 재발급
-                    res.addHeader("accessToken", accessToken);
+                    res.setHeader("accessToken", accessToken);
+                    System.out.println("새로 생성 access");
                 } catch (Exception e) {
                     throw new RuntimeException(e.getMessage());
                 }
 
             }
-            else if(refreshToken==null || jwtProvider.isTokenExpired(refreshToken)) {   //토큰 유효기간 끝
-
-                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                res.setContentType("application/json");
-                res.setCharacterEncoding("UTF-8");
-
-                JSONObject resJson = new JSONObject();
-
+            else if(refreshToken==null || jwtProvider.RefreshisTokenExpired(refreshToken)) {   //토큰 유효기간 끝
+                String memberId = jwtProvider.RefreshgetMemberIdFromToken(refreshToken);
                 try {
-                    resJson.put("code", 401);
-                } catch (JSONException ex) {
-                    throw new RuntimeException(ex);
-                }
-                try {
-                    resJson.put("message", "쿠키만료");
-                } catch (JSONException ex) {
-                    throw new RuntimeException(ex);
-                }
+                    authenticate = jwtProvider
+                            .authenticate(new UsernamePasswordAuthenticationToken(memberId, ""));
+                    //UsernamePasswordAuthenticationToken은 추후 인증이 끝나고
+                    //SecurityContextHolder.getContext()에 등록될 Authentication객체
+                    //MyUserDetailsService의  loadUserByUsername()로 이동
+                    // Details이동후 Authenticate객체 생성! (id, pw, 권한)
 
-                res.getWriter().write(resJson.toString());
+                    SecurityContextHolder.getContext().setAuthentication(authenticate);
+                    //ID, PW가 존재하는 계정이면 Holder에 객체 저장
+
+                    HashMap<String, String> m = new HashMap<>();
+                    m.put("memberId", memberId);    //RefreshToken에 저장된 Id를 가져온다
+
+                    refreshToken= jwtProvider.generateRefreshToken(m);   //accessToken 재발급
+                    res.setHeader("refreshToken", refreshToken);
+                    System.out.println("새로 생성 refresh");
+                } catch (Exception e) {
+                    throw new RuntimeException(e.getMessage());
+                }
             }
         }
         else if(accessToken!=null && !jwtProvider.isTokenExpired(accessToken)){
+
             String memberId = jwtProvider.getMemberIdFromToken(accessToken);
             try {
                 authenticate = jwtProvider

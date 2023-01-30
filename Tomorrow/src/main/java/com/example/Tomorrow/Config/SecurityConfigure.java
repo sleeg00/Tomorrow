@@ -28,6 +28,7 @@ public class SecurityConfigure {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {  //해당 URL은 필터 거치지 않겠다
         return (web -> web.ignoring().antMatchers("/api/member/join"));
+        //return (web -> web.ignoring().antMatchers("/test"));
     }
 
     @Bean

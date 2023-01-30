@@ -11,7 +11,7 @@ class Write extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage('assets/write1.png'), // 배경 이미지
+          image: AssetImage('assets/join.png'), // 배경 이미지
         ),
       ),
       child: Column(

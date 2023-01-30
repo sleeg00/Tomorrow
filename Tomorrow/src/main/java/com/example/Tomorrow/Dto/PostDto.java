@@ -15,9 +15,9 @@ import java.util.Optional;
 public class PostDto {
     private Long post_id;
     private String content;
-    private String likes;
+    private Long likes;
     private String comment;
-    private String picture;
+    private Long picture;
     private String title;
     private Member member_id;
 }

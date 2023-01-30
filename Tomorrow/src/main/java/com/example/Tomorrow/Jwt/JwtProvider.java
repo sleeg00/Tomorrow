@@ -28,7 +28,7 @@ public class JwtProvider implements AuthenticationProvider {
 
     private final MyUserDetailsService userDetailsService;
 
-    public static final long TOKEN_VALIDATION_SECOND = 120000L;
+    public static final long TOKEN_VALIDATION_SECOND = 8L;
     public static final long REFRESH_TOKEN_VALIDATION_TIME = 1000L * 60 * 60 * 48;
 
 
@@ -50,10 +50,21 @@ public class JwtProvider implements AuthenticationProvider {
         DecodedJWT verifiedToken = validateToken(token);
         return verifiedToken.getClaim("memberId").asString();
     }
+    public String RefreshgetMemberIdFromToken(String token) {
+        DecodedJWT verifiedToken = RefreshvalidateToken(token);
+        return verifiedToken.getClaim("memberId").asString();
+    }
 
     private JWTVerifier getTokenValidator() {
         return JWT.require(getSigningKey(SECRET_KEY))
                 .withIssuer(ISSUER)
+                .acceptExpiresAt(TOKEN_VALIDATION_SECOND)
+                .build();
+    }
+    private JWTVerifier RefreshgetTokenValidator() {
+        return JWT.require(getSigningKey(SECRET_KEY))
+                .withIssuer(ISSUER)
+                .acceptExpiresAt(REFRESH_TOKEN_VALIDATION_TIME)
                 .build();
     }
 
@@ -81,6 +92,10 @@ public class JwtProvider implements AuthenticationProvider {
         return validator.verify(token);
     }
 
+    private DecodedJWT RefreshvalidateToken(String token) throws JWTVerificationException {
+        JWTVerifier validator = RefreshgetTokenValidator();
+        return validator.verify(token);
+    }
     public boolean isTokenExpired(String token) {
         try {
             DecodedJWT decodedJWT = validateToken(token);
@@ -89,6 +104,17 @@ public class JwtProvider implements AuthenticationProvider {
             return true;
         }
     }
+
+    public boolean RefreshisTokenExpired(String token) {
+        try {
+            DecodedJWT decodedJWT = RefreshvalidateToken(token);
+            return false;
+        } catch (JWTVerificationException e) {
+            return true;
+        }
+    }
+
+
 
 
 

@@ -15,6 +15,8 @@ public class BasicResponse {
     private Integer code;
     private HttpStatus httpStatus;
     private String message;
+    private String accessToken;
+    private String refreshToken;
     private Integer count;
     private List<Object> result;
 }

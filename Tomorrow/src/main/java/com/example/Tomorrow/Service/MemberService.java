@@ -4,6 +4,7 @@ import com.example.Tomorrow.BasicResponse;
 import com.example.Tomorrow.Dao.Member;
 import com.example.Tomorrow.Dao.Post;
 
+import com.example.Tomorrow.Dto.MemberDto;
 import com.example.Tomorrow.Jwt.JwtProvider;
 import com.example.Tomorrow.Mapper.MemberMapper;
 import com.example.Tomorrow.Repository.MemberRepository;
@@ -42,40 +43,40 @@ public class MemberService {
 
 
 
-    public ResponseEntity<BasicResponse> join(HttpServletResponse res, Long member_id, String id, String pw) throws Exception {
+    public ResponseEntity<BasicResponse> join(HttpServletResponse res, MemberDto memberDto) throws Exception {
 
         try {
             Member member = new Member();
-            member.setMember_id(member_id);
-            member.setId(id);
-            member.setPw(pw);
-
+            member.setMember_id(102L);
+            member.setId(memberDto.getId());
+            member.setPw(memberDto.getPw());
 
             System.out.println("start post");
             Post post = new Post();
-            post.setComment("Comment");
-            post.setPost_picture("PI");
+            post.setComment(null);
+            post.setPost_picture((long)((Math.random()*10000)%10));
             post.setContent("content");
             post.setTitle("title");
-            post.setLikes("LIkes");
+            post.setLikes(0L);
             post.setMember(member);
 
             member.setRoles(Collections.singletonList("USER")); //권한 설정
+
+            //RefreshToken 생성 및 쿠키화
+
+            memberRepository.save(member);
+            postRepository.save(post);
+
             HashMap<String, String> m = new HashMap<>();
-            m.put("memberId", String.valueOf(member_id));
+            m.put("memberId", String.valueOf(member.getMember_id()));
             //Id, Pw로 Token 생성?...
 
             String accessToken, refreshToken;
             accessToken= jwtProvider.generateToken(m);
             refreshToken = jwtProvider.generateRefreshToken(m);
 
-            Cookie refreshCookie = cookieUtil.createCookie("RefreshToken", refreshToken);
-            //RefreshToken 생성 및 쿠키화
-
-            memberRepository.save(member);
-            postRepository.save(post);
-            res.addCookie(refreshCookie);   //응답에 쿠키 넘겨주기!
             res.setHeader("accessToken", accessToken);
+            res.setHeader("refreshToken", refreshToken);
 
             BasicResponse basicResponse = new BasicResponse();
             if(accessToken!=null && refreshToken!=null) {
@@ -83,6 +84,8 @@ public class MemberService {
                         .code(HttpStatus.OK.value())
                         .httpStatus(HttpStatus.OK)
                         .message(accessToken)
+                        .accessToken(accessToken)
+                        .refreshToken(refreshToken)
                         .result(null)
                         .count(1).build();
             }
@@ -93,10 +96,13 @@ public class MemberService {
         }
     }
 
-    public HttpStatus login(Long member_id) {
+    public HttpStatus login(MemberDto memberDto) {
         System.out.println("성공!!!");
         try {
-            Optional<Member> check = memberRepository.findById(member_id);
+            String id = memberRepository.findById(memberDto.getId());
+            String pw = memberRepository.findByPw(memberDto.getPw());
+            System.out.println(id);
+            System.out.println(pw);
         }catch(Exception e) {
             return HttpStatus.BAD_REQUEST;
         }

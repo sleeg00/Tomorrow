@@ -1,6 +1,7 @@
 package com.example.Tomorrow.Controller;
 
 import com.example.Tomorrow.BasicResponse;
+import com.example.Tomorrow.Dto.MemberDto;
 import com.example.Tomorrow.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,15 +17,15 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/member/join")
-    public ResponseEntity<BasicResponse> join(HttpServletResponse res, @RequestParam("member_id") Long member_id,
-                                              @RequestParam("id") String id,
-                                              @RequestParam("pw") String pw) throws Exception {
-         return memberService.join(res,member_id, id,pw);
+    public ResponseEntity<BasicResponse> join(HttpServletResponse res, @RequestBody MemberDto memberDto)throws Exception {
+        System.out.println(memberDto.getId());
+        return memberService.join(res, memberDto);
     }
 
     @PostMapping("/member/login")
-    public HttpStatus login(@RequestParam("member_id") Long member_id) {
-        return memberService.login(member_id);
+    public HttpStatus login(@RequestBody MemberDto memberDto) {
+        return memberService.login(memberDto);
     }
+
 
 }

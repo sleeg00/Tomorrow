@@ -36,6 +36,7 @@ public class PostService {
         post.setTitle(postDto.getTitle());
         post.setMember(member);
         post.setContent(postDto.getContent());
+        post.setEmoticon(postDto.getEmoticon());
         post.setLikes(0L);
         member.addPost(post);   //List에 더 하기
 

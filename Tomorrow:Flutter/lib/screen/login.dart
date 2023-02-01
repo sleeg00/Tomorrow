@@ -16,6 +16,8 @@ Future<Map<String, String>> getToken() async {
 
 Future<int> loginMember(
     String id, String pw, String accessToken, String refreshToken) async {
+  print('accessToken : $accessToken');
+  print('refreshToken: $refreshToken');
   final response = await http.post(
     Uri.parse('http://localhost:8081/api/member/login'),
     headers: <String, String>{
@@ -32,6 +34,7 @@ Future<int> loginMember(
     const storage = FlutterSecureStorage();
     Map<String, String> m = response.headers;
     if (m['accesstoken'] != null) {
+      print("accesstoken 존재");
       await storage.delete(key: 'accessToken');
       await storage.write(key: 'accessToken', value: m['accesstoken']);
     }

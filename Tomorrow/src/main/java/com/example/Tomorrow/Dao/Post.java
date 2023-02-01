@@ -38,6 +38,8 @@ public class Post {
     @Column(name = "comment", nullable = true)
     private String comment;
 
+    @Column(name = "emoticon")
+    private String emoticon;
     @ManyToOne
     @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
     private Member member;

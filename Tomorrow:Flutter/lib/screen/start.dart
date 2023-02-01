@@ -92,7 +92,7 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Post(),
+                  builder: (context) => Post(),
                 ),
               );
             },

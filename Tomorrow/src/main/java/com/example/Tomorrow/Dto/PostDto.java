@@ -20,4 +20,5 @@ public class PostDto {
     private Long picture;
     private String title;
     private Member member_id;
+    private String emoticon;
 }

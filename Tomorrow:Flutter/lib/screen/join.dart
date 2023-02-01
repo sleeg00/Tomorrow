@@ -15,10 +15,14 @@ Future<void> createMember(String id, String pw) async {
       'pw': pw,
     }),
   );
-  const storage = FlutterSecureStorage();
-  Map<String, String> m = response.headers;
-  await storage.write(key: 'accessToken', value: m['accesstoken']);
-  await storage.write(key: 'refreshToken', value: m['refreshtoken']);
+  if (response.statusCode == 200) {
+    const storage = FlutterSecureStorage();
+    Map<String, String> m = response.headers;
+    await storage.write(key: 'accessToken', value: m['accesstoken']);
+    await storage.write(key: 'refreshToken', value: m['refreshtoken']);
+  } else {
+    print("error");
+  }
 }
 
 class Member {
@@ -53,7 +57,7 @@ class _JoinState extends State<Join> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage('assets/write1.png'), // 배경 이미지
+            image: AssetImage('assets/join.png'), // 배경 이미지
           ),
         ),
         child: Column(

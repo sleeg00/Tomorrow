@@ -28,6 +28,7 @@ Future<int> write(String content, String title, String emoticon,
       'emoticon': emoticon,
     }),
   );
+
   if (response.statusCode == 200) {
     const storage = FlutterSecureStorage();
     Map<String, String> m = response.headers;
@@ -38,7 +39,8 @@ Future<int> write(String content, String title, String emoticon,
     }
     return response.statusCode;
   } else {
-    return response.statusCode;
+    print("${response.statusCode}");
+    return 400;
   }
 }
 
@@ -92,7 +94,7 @@ class _PostState extends State<Post> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             key: key,
-            backgroundColor: Colors.white,
+            backgroundColor: const Color.fromARGB(255, 102, 144, 227),
             title: const Text('Tomorrow'),
             titleTextStyle: const TextStyle(color: Colors.black, fontSize: 24),
             actions: [

@@ -3,6 +3,9 @@ import 'dart:math';
 
 import 'package:tomorrow/screen/post.dart';
 
+import '../my_flutter_app_icons.dart';
+import 'mywrite.dart';
+
 class Start extends StatelessWidget {
   const Start({super.key});
 
@@ -16,7 +19,7 @@ class Start extends StatelessWidget {
         resizeToAvoidBottomInset: false, // 키보드가 올라와도 배경 이미지가 밀려 올라가지 않도록
         appBar: AppBar(
           key: key,
-          backgroundColor: Colors.white,
+          backgroundColor: const Color.fromARGB(255, 102, 144, 227),
           title: const Text('Tomorrow'),
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 24),
           actions: [
@@ -67,21 +70,21 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: Icon(
               size: 35,
-              Icons.person_pin_circle_rounded,
+              MyFlutterApp.menu_alert_icon,
               color: Colors.grey[850],
             ),
             title: const Text(
-              '내 정보',
+              '알림',
               style: TextStyle(fontSize: 18),
             ),
             onTap: () {
-              print('home!');
+              print("알림");
             },
           ),
           ListTile(
             leading: Icon(
               size: 35,
-              Icons.menu_book_sharp,
+              MyFlutterApp.pencil,
               color: Colors.grey[850],
             ),
             title: const Text(
@@ -92,9 +95,56 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Post(),
+                  builder: (context) => const Post(),
                 ),
               );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              size: 35,
+              Icons.menu_book_sharp,
+              color: Colors.grey[850],
+            ),
+            title: const Text(
+              '내가 쓴 글',
+              style: TextStyle(fontSize: 18),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyWrite(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              size: 35,
+              MyFlutterApp.visibility,
+              color: Colors.grey[850],
+            ),
+            title: const Text(
+              '팔로워',
+              style: TextStyle(fontSize: 18),
+            ),
+            onTap: () {
+              print('Settings');
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              size: 35,
+              Icons.settings,
+              color: Colors.grey[850],
+            ),
+            title: const Text(
+              '',
+              style: TextStyle(fontSize: 18),
+            ),
+            onTap: () {
+              print('Settings');
             },
           ),
           ListTile(
@@ -110,7 +160,7 @@ class Menu extends StatelessWidget {
             onTap: () {
               print('Settings');
             },
-          )
+          ),
         ],
       ),
     );

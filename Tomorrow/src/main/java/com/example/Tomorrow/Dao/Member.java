@@ -1,6 +1,7 @@
 package com.example.Tomorrow.Dao;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,6 +36,7 @@ public class Member implements UserDetails {
 
 
     @OneToMany(mappedBy= "member") //cascadeALl ->  Entity 따라감 모든 것을
+    @JsonBackReference //순환참조 방지
     private List<Post> posts = new ArrayList<Post>();
 
     @ElementCollection(fetch = FetchType.EAGER)

@@ -50,9 +50,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(accessToken==null || jwtProvider.isTokenExpired(accessToken)) {  //유효기간 만료 또는 토큰 없을시
 
             refreshToken = req.getHeader("refreshToken"); //RefreshToken 쿠키에서 가져오기
-
+            System.out.println("RefreshToken 검사 지점");
+            //  getMemberIdFromToken에 이미 유효성 검사가 있어서
+            //jwtProvider.RefreshIsTokenExpired안해도 될 거 같다
+            //리펙토링시 참고
             if(refreshToken!=null || !jwtProvider.RefreshisTokenExpired(refreshToken)) {
-
+                System.out.println("refreshToken 유효합니다!!");
                 String memberId = jwtProvider.RefreshgetMemberIdFromToken(refreshToken);
                 // RefreshToken에 저장된 Token을 Decode해서 Id값을 가져온다
                 try {
@@ -73,11 +76,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     res.setHeader("accessToken", accessToken);
                     System.out.println("새로 생성 access");
                 } catch (Exception e) {
-                    throw new RuntimeException(e.getMessage());
+                    System.out.println("설마 여기로 들어오나?");
+                    throw new RuntimeException(e.getMessage()+"여기서 에러");
                 }
-
             }
-            else if(refreshToken==null || jwtProvider.RefreshisTokenExpired(refreshToken)) {   //토큰 유효기간 끝
+            else if(refreshToken==null || jwtProvider.RefreshisTokenExpired(refreshToken)) {
+                System.out.println("RefreshToken 휴효하지 않습니다");//토큰 유효기간 끝
                 String memberId = jwtProvider.RefreshgetMemberIdFromToken(refreshToken);
                 try {
                     authenticate = jwtProvider
@@ -95,14 +99,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     refreshToken= jwtProvider.generateRefreshToken(m);   //accessToken 재발급
                     res.setHeader("refreshToken", refreshToken);
-                    System.out.println("새로 생성 refresh");
                 } catch (Exception e) {
                     throw new RuntimeException(e.getMessage());
                 }
             }
         }
         else if(accessToken!=null && !jwtProvider.isTokenExpired(accessToken)){
-
+            System.out.println("accessToken이 유요합니다");
             String memberId = jwtProvider.getMemberIdFromToken(accessToken);
             try {
                 authenticate = jwtProvider

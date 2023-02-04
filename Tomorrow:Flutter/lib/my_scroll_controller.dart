@@ -16,7 +16,7 @@ Future<Map<String, String>> getToken() async {
 Future<Post> mywrite(String accessToken, String refreshToken) async {
   print("들어와따");
   final response = await http.get(
-    Uri.parse('http://localhost:8081/api/post/mywrite'),
+    Uri.parse('http://localhost:8081/api/post/mywrite?start=5'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'accessToken': accessToken,
@@ -77,7 +77,7 @@ class MyScrollController extends GetxController {
     int offset = data.length;
     await getToken().then((value) {
       mywrite(value['accessToken']!, value['refreshToken']!).then((value) {
-        print(value);
+        print('value값은:   $value');
       });
     });
     var appendData = List<int>.generate(10, (i) => i + 1 + offset);

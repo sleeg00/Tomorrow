@@ -99,10 +99,8 @@ public class MemberService {
     public HttpStatus login(MemberDto memberDto) {
         System.out.println("성공!!!");
         try {
-            String id = memberRepository.findById(memberDto.getId());
-            String pw = memberRepository.findByPw(memberDto.getPw());
-            System.out.println(id);
-            System.out.println(pw);
+
+
         }catch(Exception e) {
             return HttpStatus.BAD_REQUEST;
         }

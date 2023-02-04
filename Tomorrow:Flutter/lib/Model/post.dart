@@ -1,18 +1,13 @@
 class Post {
-  final int? id;
-  final String? title;
-  final String? content;
+  final String title;
+  final String content;
 
-  Post({this.content, this.id, this.title});
+  Post({required this.content, required this.title});
 
-  @override
-  String toString() => 'Post { id: $id }';
-
-  factory Post.fromJson(Map<String, dynamic> json) {
+  factory Post.fromJson(Map<String, String> json) {
     return Post(
-      id: json['post_id'],
-      title: json['title'],
-      content: json['content'],
+      title: json['title']!,
+      content: json['content']!,
     );
   }
 }

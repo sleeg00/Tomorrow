@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tomorrow/screen/infiniteScroll.dart';
 import 'dart:math';
 
 import 'package:tomorrow/screen/post.dart';
 
 import '../my_flutter_app_icons.dart';
-import 'mywrite.dart';
 
 class Start extends StatelessWidget {
   const Start({super.key});
@@ -114,7 +114,7 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyWrite(),
+                  builder: (context) => const InfiniteScrollPaginatorDemo(),
                 ),
               );
             },

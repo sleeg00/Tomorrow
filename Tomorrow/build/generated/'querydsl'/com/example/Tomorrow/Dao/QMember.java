@@ -24,7 +24,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final NumberPath<Long> member_id = createNumber("member_id", Long.class);
 
-    public final ListPath<Post, NumberPath<Post>> posts = this.<Post, NumberPath<Post>>createList("posts", Post.class, NumberPath.class, PathInits.DIRECT2);
+    public final ListPath<Post, QPost> posts = this.<Post, QPost>createList("posts", Post.class, QPost.class, PathInits.DIRECT2);
 
     public final StringPath pw = createString("pw");
 

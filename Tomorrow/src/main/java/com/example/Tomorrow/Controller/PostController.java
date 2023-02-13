@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 
 @RequestMapping("/api")
 @RestController
@@ -27,7 +25,7 @@ public class PostController {
     JwtProvider jwtProvider;
 
     @PostMapping("/post/write")
-    public ResponseEntity<BasicResponse> write(HttpServletRequest req,  @RequestBody PostDto postDto) {
+    public ResponseEntity<BasicResponse> write(HttpServletResponse req,  @RequestBody PostDto postDto) {
         System.out.println("여기까지 된 건가!");
         String accessToken = req.getHeader("accessToken");
         String member_id = jwtProvider.getMemberIdFromToken(accessToken);
@@ -36,11 +34,10 @@ public class PostController {
     }
 
     @GetMapping("/post/mywrite")
-    public Slice<PostDto> getPosts(HttpServletRequest req,
-                                @RequestParam("start") Long show,
-                                   @RequestParam("show") int limit) {
-
-        return postService.searchBySlice(show, Long.valueOf(102L), PageRequest.ofSize(limit));
+    public Slice<Post> getPosts(HttpServletRequest req,
+                                @RequestParam Long start) {
+        String accessToken = req.getHeader("accessToken");
+        String member_id = jwtProvider.getMemberIdFromToken(accessToken);
+        return postService.searchBySlice(start, Long.valueOf(member_id), PageRequest.ofSize(6));
     }
-
 }

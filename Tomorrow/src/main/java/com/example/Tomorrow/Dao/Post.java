@@ -44,5 +44,4 @@ public class Post {
     @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
     private Member member;
 
-
 }

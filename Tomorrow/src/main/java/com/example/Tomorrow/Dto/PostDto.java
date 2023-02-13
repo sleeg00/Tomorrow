@@ -11,14 +11,13 @@ import java.util.Optional;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class PostDto {
     private Long post_id;
     private String content;
     private Long likes;
     private String comment;
-    private Long post_picture;
+    private Long picture;
     private String title;
     private Member member_id;
     private String emoticon;

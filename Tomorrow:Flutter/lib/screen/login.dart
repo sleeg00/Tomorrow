@@ -82,67 +82,6 @@ class _LoginState extends State<Login> {
         ),
         child: Column(
           children: [
-            const SizedBox(
-              height: 50,
-              width: 200,
-            ),
-            TextField(
-              controller: tecId,
-              style: const TextStyle(
-                fontSize: 30,
-                color: Colors.white,
-              ),
-              decoration: const InputDecoration(
-                border: InputBorder.none, //테두리 없애기 & 배경색 입히기
-
-                focusedBorder: UnderlineInputBorder(
-                  //클릭시 보이게
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-
-                hintText: '로그인하고자하는 Id를 입력하세요!',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-                labelText: 'Username',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
-            TextField(
-              controller: tecPw,
-              style: const TextStyle(
-                fontSize: 40,
-                color: Colors.white,
-              ),
-
-              decoration: const InputDecoration(
-                border: InputBorder.none, //테두리 없애기 & 배경색 입히기
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-
-                //테두리 없애기 & 배경색 입히기
-                hintText: '로그인하고자하는 Pw를 입력하세요!',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-                labelText: 'PassWord',
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-              ),
-              obscureText: true, //비밀번호 가리기
-            ),
-            const SizedBox(
-              height: 500,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

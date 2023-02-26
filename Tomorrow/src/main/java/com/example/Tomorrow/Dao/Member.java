@@ -26,13 +26,16 @@ public class Member implements UserDetails {
 
     @Id
     @Column(name = "member_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long member_id;
 
-    @Column(name = "id")
-    private String id;
+    @Column(name = "sex")
+    private String sex;
 
-    @Column(name = "pw")
-    private String pw;
+    @Column(name = "year")
+    private String year;
+
+
 
 
     @OneToMany(mappedBy= "member") //cascadeALl ->  Entity 따라감 모든 것을
@@ -71,12 +74,12 @@ public class Member implements UserDetails {
 
     @Override
     public String getPassword() {
-        return pw;
+        return year;
     }
 
     @Override
     public String getUsername() {
-        return id;
+        return sex;
     }
 
     @Override

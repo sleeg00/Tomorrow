@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'login.dart';
+import 'join.dart';
 
 class Write extends StatelessWidget {
   const Write({super.key});
@@ -64,7 +64,7 @@ class Write extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Login(),
+                      builder: (context) => const Join(),
                     ),
                   );
                 },

@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../Model/post.dart';
-import '../Model/post_Item.dart';
+import '../screen/post_Item.dart';
 
 class InfiniteScrollPaginatorDemo extends StatefulWidget {
   const InfiniteScrollPaginatorDemo({super.key});
@@ -89,9 +89,9 @@ class _InfiniteScrollPaginatorDemoState
       Map<String, dynamic> responseList2 = json.decode(response.body);
 
       List responseList = responseList2['content'];
-
+      await Future.delayed(const Duration(seconds: 1));
       var result = PostsList.fromJson(responseList2);
-
+      print(result.posts.length);
       final isLastPage = result.posts.length < _numberOfPostsPerRequest;
 
       if (isLastPage) {
@@ -99,7 +99,7 @@ class _InfiniteScrollPaginatorDemoState
         _pagingController.appendLastPage(result.posts);
       } else {
         //마지막 페이지가 아니라면
-        final nextPageKey = pageKey - 1;
+        final nextPageKey = pageKey - result.posts.length;
         _pagingController.appendPage(result.posts, nextPageKey);
       }
     } catch (e) {

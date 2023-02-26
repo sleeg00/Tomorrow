@@ -18,7 +18,7 @@ public class MemberDto {
 
     private Long member_id;
     private List<Post> posts;
-    private String id;
-    private String pw;
+    private String sex;
+    private String year;
 
 }

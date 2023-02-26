@@ -12,10 +12,6 @@ class PostItem extends StatelessWidget {
       height: 400,
       width: 100,
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.fill,
-          image: AssetImage('assets/join.png'), // 배경 이미지
-        ),
         borderRadius: BorderRadius.all(
           Radius.circular(11),
         ),

@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ef617b7-b76b-4171-a3e8-1ebe9fe06e93" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/BasicResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/BasicResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Config/AppConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/ApiController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/DataService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/PostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/PostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/Details.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/Details.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/android/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post_Item.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/my_flutter_app_icons.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/infiniteScroll.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/post.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +33,18 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -44,9 +63,43 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="TomorrowApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.Tomorrow.TomorrowApplication" />
+      <module name="Tomorrow.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.Tomorrow.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TomorrowApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

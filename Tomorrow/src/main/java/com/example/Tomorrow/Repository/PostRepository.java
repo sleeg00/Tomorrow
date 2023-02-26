@@ -13,9 +13,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long>{
 
 
-    Post findByMemberId(Long member_id);
 
-    List<Post> findByMember(Member member);
 
 
 }

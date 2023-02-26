@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:tomorrow/screen/start.dart';
 
-import '../my_flutter_app_icons.dart';
+import '../Model/my_flutter_app_icons.dart';
 
 Future<Map<String, String>> getToken() async {
   const storage = FlutterSecureStorage();
@@ -85,7 +85,7 @@ class _PostState extends State<Post> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage('assets/login.png'), // 배경 이미지
+          image: AssetImage('assets/join.png'), // 배경 이미지
         ),
       ),
       child: Scaffold(
@@ -94,14 +94,15 @@ class _PostState extends State<Post> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             key: key,
-            backgroundColor: const Color.fromARGB(255, 102, 144, 227),
+            backgroundColor: const Color.fromARGB(255, 5, 5, 5),
             title: const Text('Tomorrow'),
-            titleTextStyle: const TextStyle(color: Colors.black, fontSize: 24),
+            titleTextStyle: const TextStyle(
+                color: Color.fromARGB(255, 252, 251, 251), fontSize: 24),
             actions: [
               Builder(
                 builder: (BuildContext context) {
                   return IconButton(
-                    color: Colors.grey[800],
+                    color: const Color.fromARGB(255, 252, 247, 247),
                     icon: const Icon(Icons.menu),
                     iconSize: 30,
                     onPressed: () {
@@ -126,7 +127,9 @@ class _PostState extends State<Post> {
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           labelText: '게시글 제목',
-
+                          labelStyle: TextStyle(
+                            color: Colors.white,
+                          ),
                           border: InputBorder.none,
                           // counter text를 비움으로 설정
                         ),
@@ -135,20 +138,25 @@ class _PostState extends State<Post> {
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
                       ),
                     ),
                     Flexible(
                       flex: 2,
                       child: DropdownButton(
-                        dropdownColor: const Color.fromARGB(255, 184, 207, 226),
+                        dropdownColor: const Color.fromARGB(255, 9, 19, 27),
                         value: selecticon,
                         icon: const SizedBox.shrink(),
                         underline: Container(), //remove underline
                         items: iconList
                             .map((e) => DropdownMenuItem(
                                   value: e,
-                                  child: Icon(e),
+                                  child: Icon(
+                                    e,
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
                                 ))
                             .toList(),
                         onChanged: (value) {
@@ -166,6 +174,9 @@ class _PostState extends State<Post> {
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     labelText: '게시글 내용',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(255, 238, 235, 235),
+                    ),
                     counterText: '', // counter text를 비움으로 설정
                   ),
                   maxLength: 100,
@@ -173,9 +184,11 @@ class _PostState extends State<Post> {
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
                 IconButton(
+                  color: const Color.fromARGB(255, 158, 213, 252),
                   onPressed: () {
                     getToken().then((value) {
                       write(content.text, title.text, selecticon.toString(),
@@ -191,7 +204,7 @@ class _PostState extends State<Post> {
                       print('getToken error: $error');
                     });
                   },
-                  icon: const Icon(MyFlutterApp.pencil, size: 50),
+                  icon: const Icon(MyFlutterApp.account_circle, size: 50),
                 ),
               ],
             ),

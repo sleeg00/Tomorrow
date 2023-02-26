@@ -23,8 +23,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long post_id;
 
-    @Column(name = "title")
-    private String title;
+
+    @Column(name = "tag")
+    private String tag;
 
     @Column(name = "content")
     private String content;
@@ -40,6 +41,7 @@ public class Post {
 
     @Column(name = "emoticon")
     private String emoticon;
+
     @ManyToOne
     @JoinColumn(name="member_id") //중복 안되게 Post테이블의 id필드랑
     private Member member;

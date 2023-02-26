@@ -6,7 +6,7 @@ class PostsList {
 
   factory PostsList.fromJson(Map<String, dynamic> parsedJson) {
     var list = parsedJson['content'] as List;
-    print(list.runtimeType);
+
     List<Post> postList = list.map((i) => Post.fromJson(i)).toList();
 
     return PostsList(lastCheck: parsedJson['last'], posts: postList);

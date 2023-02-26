@@ -16,18 +16,22 @@
 ///         Author:    Google
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 ///         Homepage:  https://design.google.com/icons/
+/// * Entypo, Copyright (C) 2012 by Daniel Bruce
+///         Author:    Daniel Bruce
+///         License:   SIL (http://scripts.sil.org/OFL)
+///         Homepage:  http://www.entypo.com
 /// * Fontelico, Copyright (C) 2012 by Fontello project
 ///         Author:    Crowdsourced, for Fontello project
 ///         License:   SIL (http://scripts.sil.org/OFL)
 ///         Homepage:  http://fontello.com
+/// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
-/// * Linearicons Free, Copyright (C) Linearicons.com
-///         Author:    Perxis
-///         License:   CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-///         Homepage:  https://linearicons.com
 ///
 import 'package:flutter/widgets.dart';
 
@@ -37,58 +41,78 @@ class MyFlutterApp {
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
-  static const IconData add_to_photos =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData border_color =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_forward =
-      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData arrow_back =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData account_circle =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData attach_file =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData location_on =
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_upward =
+  static const IconData location_off =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData arrow_downward =
-      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cached =
-      IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData contact_mail =
-      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData lock =
-      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData lock_open =
-      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData visibility_off =
-      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData visibility =
+      IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData note_beamed =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData users =
+      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData user_add =
+      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData user =
+      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home =
       IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_surprised =
-      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_tongue =
-      IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData emo_happy =
-      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_beer =
+      IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData emo_wink =
+      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_grin =
       IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_unhappy =
-      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_sleep =
-      IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_thumbsup =
-      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData emo_coffee =
-      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData emo_angry =
+      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_unhappy =
+      IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_saint =
+      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_wink2 =
+      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_sleep =
       IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pencil =
+  static const IconData emo_cry =
       IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData search =
+  static const IconData emo_thumbsup =
       IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pencil_1 =
+  static const IconData emo_shoot =
       IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData paper_plane =
-      IconData(0xf1d8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData paper_plane_empty =
-      IconData(0xf1d9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData menu_alert_icon =
-      IconData(0xf0f3, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_devil =
+      IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_surprised =
+      IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_squint =
+      IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_laugh =
+      IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_tongue =
+      IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_coffee =
+      IconData(0xe81d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_sunglasses =
+      IconData(0xe81e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData emo_displeased =
+      IconData(0xe81f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData rocket =
+      IconData(0xe820, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData search =
+      IconData(0xf002, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData comments =
+      IconData(0xf086, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData commenting_o =
+      IconData(0xf27b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData address_card =
+      IconData(0xf2bb, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

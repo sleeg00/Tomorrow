@@ -47,16 +47,12 @@ public class MemberService {
 
         try {
             Member member = new Member();
-            member.setMember_id(102L);
-            member.setId(memberDto.getId());
-            member.setPw(memberDto.getPw());
 
-            System.out.println("start post");
+
+
             Post post = new Post();
             post.setComment(null);
             post.setPost_picture((long)((Math.random()*10000)%10));
-            post.setContent("content");
-            post.setTitle("title");
             post.setLikes(0L);
             post.setMember(member);
 

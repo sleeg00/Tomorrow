@@ -38,7 +38,7 @@ public class PostService {
         Post post = new Post();
         post.setPost_picture((long) ((Math.random()*10000)%10));
         post.setComment(null);
-        post.setTitle(postDto.getTitle());
+
         post.setMember(member);
         post.setContent(postDto.getContent());
         post.setEmoticon(postDto.getEmoticon());

@@ -94,7 +94,7 @@ class _PostState extends State<Post> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             key: key,
-            backgroundColor: const Color.fromARGB(255, 5, 5, 5),
+            backgroundColor: Colors.transparent,
             title: const Text('Tomorrow'),
             titleTextStyle: const TextStyle(
                 color: Color.fromARGB(255, 252, 251, 251), fontSize: 24),
@@ -120,28 +120,6 @@ class _PostState extends State<Post> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Flexible(
-                      flex: 20,
-                      child: TextField(
-                        controller: title,
-                        keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                          labelText: '게시글 제목',
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          border: InputBorder.none,
-                          // counter text를 비움으로 설정
-                        ),
-                        maxLength: 12,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                     Flexible(
                       flex: 2,
                       child: DropdownButton(
@@ -173,7 +151,9 @@ class _PostState extends State<Post> {
                   keyboardType: TextInputType.multiline,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    labelText: '게시글 내용',
+                    hintText: "터치해서 글을 써보세요",
+                    hintStyle: TextStyle(color: Colors.white),
+
                     labelStyle: TextStyle(
                       color: Color.fromARGB(255, 238, 235, 235),
                     ),

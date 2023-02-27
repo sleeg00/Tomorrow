@@ -6,8 +6,29 @@ import 'package:tomorrow/screen/post.dart';
 
 import '../Model/my_flutter_app_icons.dart';
 
-class Start extends StatelessWidget {
+class Start extends StatefulWidget {
   const Start({super.key});
+
+  @override
+  State<Start> createState() => _StartState();
+}
+
+class _StartState extends State<Start> {
+  int selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  void _onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Post()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +38,9 @@ class Start extends StatelessWidget {
       home: Scaffold(
         resizeToAvoidBottomInset: false, // 키보드가 올라와도 배경 이미지가 밀려 올라가지 않도록
         appBar: AppBar(
-          key: key,
           backgroundColor: Colors.transparent,
           title: const Text('Tomorrow'),
-          titleTextStyle: const TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255), fontSize: 24),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -61,35 +80,51 @@ class Start extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(0, 238, 6, 6),
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  size: 35,
-                  MyFlutterApp.home,
-                  color: Color.fromARGB(200, 249, 246, 246),
-                ),
-                label: "",
-                backgroundColor: Colors.black),
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.transparent,
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
+                Icons.home,
                 size: 35,
-                MyFlutterApp.user,
-                color: Colors.white,
               ),
               label: '',
-              backgroundColor: Colors.black,
             ),
-            BottomNavigationBarItem(icon: Icon(MyFlutterApp.home), label: 'my')
-          ],
-          onTap: (value) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Post(),
+            BottomNavigationBarItem(
+              icon: Icon(
+                MyFlutterApp.search,
+                size: 35,
               ),
-            );
-          },
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                MyFlutterApp.rocket,
+                size: 35,
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.alarm,
+                size: 35,
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                MyFlutterApp.user,
+                size: 35,
+              ),
+              label: '',
+            ),
+          ],
+          currentIndex: selectedIndex,
+          unselectedItemColor:
+              const Color.fromARGB(255, 252, 251, 251).withOpacity(0.8),
+          selectedItemColor:
+              const Color.fromARGB(255, 200, 200, 200).withOpacity(0.8),
+          onTap: _onItemTapped,
         ),
         extendBody: true,
       ),
@@ -110,30 +145,10 @@ class Menu extends StatelessWidget {
 
       child: ListView(
         padding: EdgeInsets.zero, //여백 x
-        // padding: const EdgeInsets.only(left: 150),
         children: [
           const SizedBox(
             height: 100,
           ),
-          /*
-          ListTile(
-            leading: const Icon(
-              size: 35,
-              MyFlutterApp.menu_alert_icon,
-              color: Color.fromARGB(255, 237, 240, 242),
-            ),
-            title: const Text(
-              '알림',
-              style: TextStyle(
-                fontSize: 18,
-                color: Color.fromARGB(255, 237, 240, 242),
-              ),
-            ),
-            onTap: () {
-              print("알림");
-            },
-          ),
-          */
           ListTile(
             leading: const Icon(
               size: 35,
@@ -178,56 +193,6 @@ class Menu extends StatelessWidget {
               );
             },
           ),
-          /*
-          ListTile(
-            leading: const Icon(
-              size: 35,
-              MyFlutterApp.visibility,
-              color: Color.fromARGB(255, 247, 248, 249),
-            ),
-            title: const Text(
-              '팔로워',
-              style: TextStyle(
-                fontSize: 18,
-                color: Color.fromARGB(255, 237, 240, 242),
-              ),
-            ),
-            onTap: () {
-              print('Settings');
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              size: 35,
-              Icons.settings,
-              color: Color.fromARGB(255, 237, 245, 246),
-            ),
-            title: const Text(
-              '',
-              style: TextStyle(fontSize: 18),
-            ),
-            onTap: () {
-              print('Settings');
-            },
-          ),
-          ListTile(
-            leading: const Icon(
-              size: 35,
-              Icons.settings,
-              color: Color.fromARGB(255, 243, 245, 247),
-            ),
-            title: const Text(
-              '설정',
-              style: TextStyle(
-                fontSize: 18,
-                color: Color.fromARGB(255, 237, 240, 242),
-              ),
-            ),
-            onTap: () {
-              print('Settings');
-            },
-          ),
-          */
         ],
       ),
     );

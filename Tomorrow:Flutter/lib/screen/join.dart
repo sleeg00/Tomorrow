@@ -208,7 +208,7 @@ class _JoinState extends State<Join> {
               height: 250,
             ),
             IconButton(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 219, 46, 249),
               icon: const Icon(Icons.rocket_launch),
               onPressed: () {
                 doubleCheck();

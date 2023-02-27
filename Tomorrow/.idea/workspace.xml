@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ef617b7-b76b-4171-a3e8-1ebe9fe06e93" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dao/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/PostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Dto/PostDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/Details.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/Details.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Tomorrow/Service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/Model/post_Item.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/my_flutter_app_icons.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/infiniteScroll.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/post.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/lib/screen/start.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tomorrow:Flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Tomorrow:Flutter/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,17 +46,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="TomorrowApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Tomorrow.TomorrowApplication" />

@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:tomorrow/screen/start.dart';
 
 import 'join.dart';
+
+Future<bool> getToken() async {
+  const storage = FlutterSecureStorage();
+  String? a = await storage.read(key: 'accessToken');
+  String? b = await storage.read(key: 'refreshToken');
+  if (a != null && b != null) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
 class Write extends StatelessWidget {
   const Write({super.key});
@@ -19,36 +32,6 @@ class Write extends StatelessWidget {
           const SizedBox(
             height: 100,
           ),
-          /*
-          SizedBox(
-            height: 100,
-            width: 200,
-            child: FittedBox(
-              child: FloatingActionButton.extended(
-                heroTag: "JoinButton", //FAB가 두 개 이상이면 필수 아니면 충돌 오류
-                //extended=Custom할 수 있다
-                shape: const RoundedRectangleBorder(),
-                backgroundColor:
-                    const Color.fromARGB(255, 119, 73, 13).withOpacity(0.1),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Join(),
-                    ),
-                  );
-                },
-                label: const Text(
-                  'Join ',
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-          */
           const SizedBox(
             height: 100,
           ),
@@ -61,12 +44,23 @@ class Write extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Join(),
-                    ),
-                  );
+                  getToken().then((value) {
+                    if (value == false) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Start(),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Join(),
+                        ),
+                      );
+                    }
+                  });
                 },
                 child: const Text(
                   'Start',

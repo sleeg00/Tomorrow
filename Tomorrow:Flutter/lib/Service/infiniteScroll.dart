@@ -40,28 +40,37 @@ class _InfiniteScrollPaginatorDemoState
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(100, 30, 30, 30),
-      appBar: AppBar(
-        title: const Text("글"),
-        titleTextStyle: const TextStyle(
-          color: Color.fromARGB(255, 255, 255, 255),
-          fontSize: 25,
-          fontWeight: FontWeight.w700,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.fill,
+          image: AssetImage('assets/join.png'), // 배경 이미지
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(100, 30, 30, 30),
       ),
-      body: RefreshIndicator(
-        onRefresh: () => Future.sync(() => _pagingController.refresh()),
-        child: PagedListView<int, Post>(
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<Post>(
-            itemBuilder: (context, item, index) => Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: PostItem(item.title, item.content),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: RefreshIndicator(
+          onRefresh: () => Future.sync(() => _pagingController.refresh()),
+          child: PagedListView<int, Post>(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<Post>(
+              itemBuilder: (context, item, index) => Container(
+                height: 1000,
+                padding: const EdgeInsets.all(0),
+                child: PostItem(item.tag, item.content, item.picture),
+              ),
             ),
           ),
+        ),
+        appBar: AppBar(
+          title: const Text("Tomorrow"),
+          titleTextStyle: const TextStyle(
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
         ),
       ),
     );
@@ -77,8 +86,7 @@ class _InfiniteScrollPaginatorDemoState
       String accessToken, String refreshToken, int pageKey) async {
     try {
       final response = await get(
-        Uri.parse(
-            "http://localhost:8081/api/post/mywrite?start=$pageKey&show=$_numberOfPostsPerRequest"),
+        Uri.parse("http://localhost:8081/api/home?start=$pageKey"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'accessToken': accessToken,
@@ -86,9 +94,11 @@ class _InfiniteScrollPaginatorDemoState
         },
       );
 
-      Map<String, dynamic> responseList2 = json.decode(response.body);
+      Map<String, dynamic> responseList2 =
+          json.decode(utf8.decode(response.bodyBytes));
 
       List responseList = responseList2['content'];
+      print(responseList);
       await Future.delayed(const Duration(seconds: 1));
       var result = PostsList.fromJson(responseList2);
       print(result.posts.length);

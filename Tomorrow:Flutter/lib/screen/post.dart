@@ -10,11 +10,12 @@ import '../Model/my_flutter_app_icons.dart';
 Future<Map<String, String>> getToken() async {
   const storage = FlutterSecureStorage();
   Map<String, String> allValues = await storage.readAll();
+
   return allValues;
 }
 
-Future<int> write(String content, String title, String emoticon,
-    String accessToken, String refreshToken) async {
+Future<int> write(String content, String emoticon, String accessToken,
+    String refreshToken) async {
   final response = await http.post(
     Uri.parse('http://localhost:8081/api/post/write'),
     headers: <String, String>{
@@ -24,7 +25,6 @@ Future<int> write(String content, String title, String emoticon,
     },
     body: jsonEncode(<String, dynamic>{
       'content': content,
-      'title': title,
       'emoticon': emoticon,
     }),
   );
@@ -32,8 +32,8 @@ Future<int> write(String content, String title, String emoticon,
   if (response.statusCode == 200) {
     const storage = FlutterSecureStorage();
     Map<String, String> m = response.headers;
-    if (m['accesstoken'] != null) {
-      print("accesstoken 존재");
+    if (m['accessToken'] != null) {
+      print("accessToken 존재");
       await storage.delete(key: 'accessToken');
       await storage.write(key: 'accessToken', value: m['accesstoken']);
     }
@@ -171,7 +171,7 @@ class _PostState extends State<Post> {
                   color: const Color.fromARGB(255, 158, 213, 252),
                   onPressed: () {
                     getToken().then((value) {
-                      write(content.text, title.text, selecticon.toString(),
+                      write(content.text, selecticon.toString(),
                               value['accessToken']!, value['refreshToken']!)
                           .then((value) {
                         if (value == 200) {

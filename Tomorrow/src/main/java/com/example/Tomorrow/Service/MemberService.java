@@ -47,12 +47,12 @@ public class MemberService {
 
         try {
             Member member = new Member();
-
+            member.setYear(memberDto.getYear());
+            member.setSex(memberDto.getSex());
 
 
             Post post = new Post();
-            post.setComment(null);
-            post.setPost_picture((long)((Math.random()*10000)%10));
+
             post.setLikes(0L);
             post.setMember(member);
 
@@ -88,7 +88,8 @@ public class MemberService {
             return new ResponseEntity<>(basicResponse, basicResponse.getHttpStatus());
             //ResponseBody에 AccessToken 전달
         }catch(Exception e){
-            throw new Exception(e.getMessage());
+            throw
+                    new Exception(e.getMessage());
         }
     }
 

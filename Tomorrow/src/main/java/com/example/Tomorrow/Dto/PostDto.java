@@ -17,7 +17,7 @@ public class PostDto {
     private String content;
     private Long likes;
     private String comment;
-    private Long picture;
+    private String picture;
     private String tag;
     private Member member_id;
     private String emoticon;

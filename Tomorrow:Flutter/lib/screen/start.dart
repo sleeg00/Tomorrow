@@ -22,6 +22,14 @@ class _StartState extends State<Start> {
     setState(() {
       selectedIndex = index;
     });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const InfiniteScrollPaginatorDemo(),
+        ),
+      );
+    }
     if (index == 2) {
       Navigator.push(
         context,

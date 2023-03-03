@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tomorrow/screen/start.dart';
 
 Future<bool> getToken() async {
+  //Token있는지 확인
   const storage = FlutterSecureStorage();
   String? a = await storage.read(key: 'accessToken');
   String? b = await storage.read(key: 'refreshToken');
@@ -30,6 +31,8 @@ Future<void> createMember(String sex, String year) async {
   if (response.statusCode == 200) {
     const storage = FlutterSecureStorage();
     Map<String, String> m = response.headers;
+
+    await storage.deleteAll();
     await storage.write(key: 'accessToken', value: m['accesstoken']);
     await storage.write(key: 'refreshToken', value: m['refreshtoken']);
   } else {
@@ -72,7 +75,7 @@ class _JoinState extends State<Join> {
       yearList.add(i.toString());
     }
     getToken().then((value) {
-      if (value == false) {
+      if (value == true) {
         errorJoin();
       }
     });
@@ -140,7 +143,6 @@ class _JoinState extends State<Join> {
 
                           iconSize: 0.0,
                           style: const TextStyle(
-                            //te
                             color:
                                 Color.fromARGB(255, 249, 250, 249), //Font color
                             fontSize: 30, //font size on dropdown button
@@ -248,15 +250,16 @@ class _JoinState extends State<Join> {
                 ),
                 onPressed: () {
                   getToken().then((value) {
-                    if (value == true) {
-                      createMember(selectedDropdown, selectedYear);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Start()),
-                      );
-                    } else {
+                    createMember(selectedDropdown, selectedYear);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Start()),
+                    );
+                    /*
+                    else {
                       errorJoin();
                     }
+                    */
                   });
                 },
                 child: const Text(

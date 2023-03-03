@@ -8,9 +8,7 @@ import com.example.Tomorrow.Mapper.PostMapper;
 import com.example.Tomorrow.Repository.MemberRepository;
 import com.example.Tomorrow.Repository.PostRepository;
 
-import com.example.Tomorrow.Repository.PostRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
@@ -36,8 +34,8 @@ public class PostService {
         //Member member = example.orElseGet(Member::new) 코드를 한 줄로 줄였다 만약 널이 아니라면 저장하는 것
 
         Post post = new Post();
-        post.setPost_picture((long) ((Math.random()*10000)%10));
-        post.setComment(null);
+
+
 
         post.setMember(member);
         post.setContent(postDto.getContent());
@@ -59,6 +57,11 @@ public class PostService {
     public Slice<Post> searchBySlice(Long start, Long member_id,
                                      Pageable pageable){
         return postRepositoryImpl.searchBySlice(start, member_id, pageable);
+    }
+
+    public Slice<Post> searchBySliceHome(Long start, Long member_id,
+                                     Pageable pageable){
+        return postRepositoryImpl.searchBySliceHome(start, member_id, pageable);
     }
 
 }

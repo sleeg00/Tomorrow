@@ -7,7 +7,8 @@ import org.springframework.security.core.userdetails.User;
 public class Details extends User { //Authentication 객체 생성 super()을 이용하여!
 
     public Details(Member member) {
-        super("","",
+
+        super(member.getSex(),member.getYear(),
                 AuthorityUtils.createAuthorityList(String.valueOf(member.getRoles())));
     }
 

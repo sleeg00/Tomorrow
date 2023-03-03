@@ -25,12 +25,17 @@ class PostsList {
 }
 
 class Post {
-  final String title;
+  final String tag;
   final String content;
+  final String picture;
 
-  Post({required this.title, required this.content});
+  Post({required this.tag, required this.content, required this.picture});
 
   factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(content: json['content'], title: json['title']);
+    print(json['post_picture']);
+    return Post(
+        content: json['content'],
+        tag: json['tag'],
+        picture: json['post_picture']);
   }
 }

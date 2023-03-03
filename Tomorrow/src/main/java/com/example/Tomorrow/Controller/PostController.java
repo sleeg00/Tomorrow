@@ -25,7 +25,7 @@ public class PostController {
     JwtProvider jwtProvider;
 
     @PostMapping("/post/write")
-    public ResponseEntity<BasicResponse> write(HttpServletResponse req,  @RequestBody PostDto postDto) {
+    public ResponseEntity<BasicResponse> write(HttpServletRequest req,  @RequestBody PostDto postDto) {
         System.out.println("여기까지 된 건가!");
         String accessToken = req.getHeader("accessToken");
         String member_id = jwtProvider.getMemberIdFromToken(accessToken);

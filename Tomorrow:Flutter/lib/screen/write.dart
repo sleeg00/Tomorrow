@@ -45,18 +45,18 @@ class Write extends StatelessWidget {
                 ),
                 onPressed: () {
                   getToken().then((value) {
-                    if (value == false) {
+                    if (value == true) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Start(),
+                          builder: (context) => const Join(),
                         ),
                       );
                     } else {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Join(),
+                          builder: (context) => const Start(),
                         ),
                       );
                     }

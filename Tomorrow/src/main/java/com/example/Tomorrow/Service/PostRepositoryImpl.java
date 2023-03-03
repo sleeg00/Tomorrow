@@ -1,11 +1,13 @@
-package com.example.Tomorrow.Repository;
+package com.example.Tomorrow.Service;
 
 import com.example.Tomorrow.Dao.Member;
 import com.example.Tomorrow.Dao.Post;
+import com.example.Tomorrow.Repository.MemberRepository;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
 
 
 import javax.persistence.EntityManager;
@@ -15,6 +17,7 @@ import static com.example.Tomorrow.Dao.QPost.post;
 
 
 
+@Service
 public class PostRepositoryImpl {
     @Autowired
     MemberRepository memberRepository;
@@ -36,6 +39,23 @@ public class PostRepositoryImpl {
                         ltPostId(lastPostId),
                         // 기타 조건들
                         post.member.eq(member)
+                )
+                .orderBy(post.post_id.desc())
+                .limit(pageable.getPageSize()+1)
+                .fetch();
+
+        // 무한 스크롤 처리
+        return checkLastPage(pageable, results);
+    }
+
+    public Slice<Post> searchBySliceHome(Long lastPostId, Long member_id,  Pageable pageable)
+    {
+
+        List<Post> results = query.selectFrom(post)
+                .where(
+                        // no-offset 페이징 처리
+                        ltPostId(lastPostId)
+                        // 기타 조건들
                 )
                 .orderBy(post.post_id.desc())
                 .limit(pageable.getPageSize()+1)

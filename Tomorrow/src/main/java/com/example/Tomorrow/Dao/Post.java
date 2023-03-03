@@ -31,7 +31,7 @@ public class Post {
     private String content;
 
     @Column(name = "picture")
-    private Long post_picture;
+    private String post_picture;
 
     @Column(name = "likes", nullable = true)
     private Long likes;
